@@ -1,16 +1,52 @@
-# React + Vite
+# Pokémon App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a simple web application built with React and Vite that allows users to browse a list of Pokémon fetched from the [PokeAPI](https://pokeapi.co/).
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Pokémon List**: Displays a list of Pokémon in alphabetical order.
+- **Pagination**: Navigate through the Pokémon list with "Previous" and "Next" buttons.
+- **Detail View**: Click on any Pokémon to see its details (image, weight, height, and types) in a modal window.
+- **Clean Interface**: A simple and easy-to-use user interface.
+- **Asynchronous Loading**: Shows a "Loading..." indicator while fetching data from the API.
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **[React](https://react.dev/)**: The main library for building the user interface.
+- **[Vite](https://vitejs.dev/)**: A fast development and bundling tool for modern web projects.
+- **[Axios](https://axios-http.com/)**: An HTTP client for making requests to the PokeAPI.
+- **[PokeAPI](https://pokeapi.co/)**: The API from which all Pokémon data is obtained.
+- **CSS**: Custom styles for the application's appearance.
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Follow these steps to run the project on your local machine.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 18 or higher)
+- [npm](https://www.npmjs.com/) (usually comes with Node.js)
+
+### Installation and Execution
+
+1.  **Clone the repository** (or download the files):
+    ```sh
+    git clone <REPOSITORY_URL>
+    ```
+
+2.  **Navigate to the project directory**:
+    ```sh
+    cd pokemon-app
+    ```
+
+3.  **Install the dependencies**:
+    ```sh
+    npm install
+    ```
+
+4.  **Start the development server**:
+    ```sh
+    npm run dev
+    ```
+
+5.  Open your browser and visit `http://localhost:5175` to see the application running.
