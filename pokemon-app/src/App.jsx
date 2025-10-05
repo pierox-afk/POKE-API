@@ -226,7 +226,7 @@ export default function App() {
           {isDarkMode ? "☀️ Light" : "🌙 Dark"}
         </button>
         <button className="minigame-btn" onClick={() => setShowMinigame(true)}>
-          🎮 Minijuego
+          🎮 Minigame
         </button>
       </div>
       <div className="carousel-section">

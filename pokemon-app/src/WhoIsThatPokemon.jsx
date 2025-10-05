@@ -66,7 +66,7 @@ const WhoIsThatPokemon = ({ allPokemons, onClose }) => {
   };
 
   if (!answer) {
-    return <div className="minigame-modal-bg">Cargando minijuego...</div>;
+    return <div className="minigame-modal-bg">Loading minigame...</div>;
   }
 
   return (
@@ -78,10 +78,10 @@ const WhoIsThatPokemon = ({ allPokemons, onClose }) => {
         <button className="close-btn" onClick={onClose}>
           &times;
         </button>
-        <h2>¿Quién es este Pokémon?</h2>
+        <h2>Who's That Pokémon?</h2>
         <div className="scores">
-          <span>Puntuación: {score}</span>
-          <span>Máxima: {highScore}</span>
+          <span>Score: {score}</span>
+          <span>High Score: {highScore}</span>
         </div>
         <div className="pokemon-image-container">
           <img
