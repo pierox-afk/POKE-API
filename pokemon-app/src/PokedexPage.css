@@ -327,6 +327,7 @@
   .main-layout {
     padding: 30px 40px;
   }
+}
 
 @media (max-width: 768px) {
   .main-layout {
