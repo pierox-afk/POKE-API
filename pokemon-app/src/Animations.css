@@ -1,0 +1,119 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pokeball-loader {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(to bottom, #ef5350 50%, white 50%);
+  border-radius: 50%;
+  border: 4px solid #2d2d2d;
+  position: relative;
+  animation: spin 1s linear infinite;
+}
+
+.pokeball-loader::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #2d2d2d;
+  transform: translateY(-50%);
+}
+
+.pokeball-loader::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 4px solid #2d2d2d;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pokeball-loader-small {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(to bottom, #ef5350 50%, white 50%);
+  border-radius: 50%;
+  border: 2px solid #2d2d2d;
+  position: relative;
+  animation: spin 1s linear infinite;
+}
+
+.pokeball-loader-small::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #2d2d2d;
+  transform: translateY(-50%);
+}
+
+.pokeball-loader-small::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border: 2px solid #2d2d2d;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes modal-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}

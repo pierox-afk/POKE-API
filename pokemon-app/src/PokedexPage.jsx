@@ -1,20 +1,11 @@
-import React, { useEffect, useState } from "react";
-import PokemonModal from "./PokemonModal";
-import PokeballTransition from "./PokeballTransition";
-import WhoIsThatPokemon from "./WhoIsThatPokemon";
-import TypeEmojiBackground from "./TypeEmojiBackground";
+import React, { useState, useEffect } from "react";
+import PokemonModal from "../../components/PokemonModal/PokemonModal.jsx";
+import PokeballTransition from "../../components/PokeballTransition/PokeballTransition.jsx";
 import axios from "axios";
-import "./App.css";
-import "./Controls.css";
-import "./Carousel.css";
-import "./TypeColors.css";
 import "./PokedexPage.css";
-import "./PokeballTransition.css";
-import "./TypeEmojiBackground.css";
-import "./WhoIsThatPokemon.css";
-import "./TypeEffectiveness.css";
+import "./Carousel.css";
 
-export default function App() {
+export default function PokedexPage() {
   const [pokemons, setPokemons] = useState([]);
   const [allPokemons, setAllPokemons] = useState([]);
   const [types, setTypes] = useState([]);
@@ -27,28 +18,20 @@ export default function App() {
   const [sortOrder] = useState("id");
   const [animationDirection, setAnimationDirection] = useState("");
   const [selectedType, setSelectedType] = useState(null);
-  const [isDarkMode, setIsDarkMode] = useState(
-    () => localStorage.getItem("pokedex-dark-mode") === "true"
-  );
-  const [favorites, setFavorites] = useState(
-    () => new Set(JSON.parse(localStorage.getItem("pokemon-favorites") || "[]"))
-  );
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [showMinigame, setShowMinigame] = useState(false);
   const pokemonsPerPage = 10;
 
   useEffect(() => {
     setLoading(true);
     Promise.all([
-      axios.get(`https://pokeapi.co/api/v2/pokemon?limit=200`),
+      axios.get(`https://pokeapi.co/api/v2/pokemon?limit=1302`),
       axios.get(`https://pokeapi.co/api/v2/type`),
     ]).then(([pokemonsRes, typesRes]) => {
-      const enrichedPokemons = pokemonsRes.data.results.map((p, index) => ({
-        ...p,
-        id: index + 1,
-      }));
-      setAllPokemons(enrichedPokemons);
-      setPokemons(enrichedPokemons);
+      setAllPokemons(
+        pokemonsRes.data.results.map((p, index) => ({ ...p, id: index + 1 }))
+      );
+      setPokemons(
+        pokemonsRes.data.results.map((p, index) => ({ ...p, id: index + 1 }))
+      );
       const validTypes = typesRes.data.results.filter(
         (type) => type.name !== "unknown" && type.name !== "shadow"
       );
@@ -69,11 +52,8 @@ export default function App() {
     setLoading(true);
     axios.get(`https://pokeapi.co/api/v2/type/${selectedType}`).then((res) => {
       const typedPokemons = res.data.pokemon.map((p) => {
-        const id = +p.pokemon.url.split("/").filter(Boolean).pop();
-        return {
-          ...p.pokemon,
-          id,
-        };
+        const id = p.pokemon.url.split("/").filter(Boolean).pop();
+        return { ...p.pokemon, id: +id };
       });
       setPokemons(typedPokemons);
       setLoading(false);
@@ -81,6 +61,7 @@ export default function App() {
   }, [selectedType, allPokemons]);
 
   useEffect(() => {
+    // Limpia clases de tipo anteriores del body
     const bodyClasses = document.body.classList;
     for (const cls of [...bodyClasses]) {
       if (cls.startsWith("background-type-")) {
@@ -88,54 +69,22 @@ export default function App() {
       }
     }
 
+    // Añade la nueva clase si se selecciona un tipo
     if (selectedType) {
       document.body.classList.add(`background-type-${selectedType}`);
     }
+    // Si no hay tipo seleccionado, se usará el fondo por defecto del body
   }, [selectedType]);
 
-  useEffect(() => {
-    if (isDarkMode) {
-      document.body.classList.add("dark");
-    } else {
-      document.body.classList.remove("dark");
-    }
-    localStorage.setItem("pokedex-dark-mode", isDarkMode);
-  }, [isDarkMode]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem("pokemon-favorites");
-    if (saved) {
-      setFavorites(new Set(JSON.parse(saved)));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("pokemon-favorites", JSON.stringify([...favorites]));
-  }, [favorites]);
-
-  const toggleFavorite = (pokemonId) => {
-    setFavorites((prev) => {
-      const newFav = new Set(prev);
-      if (newFav.has(pokemonId)) {
-        newFav.delete(pokemonId);
-      } else {
-        newFav.add(pokemonId);
-      }
-      return newFav;
-    });
-  };
-
-  const sortedPokemons = [...allPokemons].sort((a, b) => {
+  const sortedPokemons = [...pokemons].sort((a, b) => {
     if (sortOrder === "name") {
       return a.name.localeCompare(b.name);
     }
     return a.id - b.id;
   });
 
-  const filteredPokemons = (selectedType ? pokemons : sortedPokemons).filter(
-    (p) =>
-      p.name.toLowerCase().includes(search.toLowerCase()) && // Search filter
-      (!showFavorites || favorites.has(p.id))
+  const filteredPokemons = sortedPokemons.filter((p) =>
+    p.name.toLowerCase().includes(search.toLowerCase())
   );
 
   const paginatedPokemons = filteredPokemons.slice(
@@ -148,54 +97,41 @@ export default function App() {
     setPokemonToOpen(pokemonName);
     setIsOpeningModal(true);
   };
-
-  const handleSwitchPokemon = (pokemonName) => {
+  const handleEvolutionSelect = (pokemonName) => {
     setSelectedPokemon(null);
-    setTimeout(() => handlePokemonSelect(pokemonName), 50);
+    handlePokemonSelect(pokemonName);
   };
 
-  const handlePageChange = (newPage) => {
-    if (newPage > page) {
+  const handlePageChange = (direction) => {
+    let newPage;
+    if (direction === "next") {
+      newPage = page >= totalPages - 1 ? 0 : page + 1;
       setAnimationDirection("slide-out-left");
     } else {
+      newPage = page === 0 ? totalPages - 1 : page - 1;
       setAnimationDirection("slide-out-right");
     }
 
     setTimeout(() => {
       setPage(newPage);
-      if (newPage > page) {
+      if (direction === "next") {
         setAnimationDirection("slide-in-right");
       } else {
         setAnimationDirection("slide-in-left");
       }
-    }, 250);
+    }, 250); 
   };
 
   return (
     <div className="main-layout">
-      <TypeEmojiBackground />
       <h1 className="main-title">Pokédex</h1>
       <div className="header-box">
         <div className="type-filters">
           <button
-            className={`type-filter ${
-              !selectedType && !showFavorites ? "active" : ""
-            }`}
-            onClick={() => {
-              setSelectedType(null);
-              setShowFavorites(false);
-            }}
+            className={`type-filter ${!selectedType ? "active" : ""}`}
+            onClick={() => setSelectedType(null)}
           >
             All
-          </button>
-          <button
-            className={`type-filter ${showFavorites ? "active" : ""}`}
-            onClick={() => {
-              setShowFavorites(!showFavorites);
-              setSelectedType(null);
-            }}
-          >
-            Favorites
           </button>
           {types.map((type) => (
             <button
@@ -203,10 +139,7 @@ export default function App() {
               className={`type-filter type-${type.name} ${
                 selectedType === type.name ? "active" : ""
               }`}
-              onClick={() => {
-                setSelectedType(type.name);
-                setShowFavorites(false);
-              }}
+              onClick={() => setSelectedType(type.name)}
             >
               {type.name}
             </button>
@@ -219,15 +152,6 @@ export default function App() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button
-          className="theme-toggle-btn"
-          onClick={() => setIsDarkMode(!isDarkMode)}
-        >
-          {isDarkMode ? "☀️ Light" : "🌙 Dark"}
-        </button>
-        <button className="minigame-btn" onClick={() => setShowMinigame(true)}>
-          🎮 Minijuego
-        </button>
       </div>
       <div className="carousel-section">
         {loading ? (
@@ -238,8 +162,8 @@ export default function App() {
           <div className="pokemon-carousel-container">
             <button
               className="carousel-arrow prev"
-              onClick={() => handlePageChange(page - 1)}
-              disabled={page === 0}
+              onClick={() => handlePageChange("prev")}
+              disabled={totalPages <= 1}
             >
               &#9664;
             </button>
@@ -259,23 +183,14 @@ export default function App() {
                       />
                       {pokemon.name}
                     </button>
-                    <button
-                      className="favorite-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleFavorite(pokemon.id);
-                      }}
-                    >
-                      {favorites.has(pokemon.id) ? "❤️" : "🤍"}
-                    </button>
                   </li>
                 ))}
               </ul>
             </div>
             <button
               className="carousel-arrow next"
-              onClick={() => handlePageChange(page + 1)}
-              disabled={page >= totalPages - 1}
+              onClick={() => handlePageChange("next")}
+              disabled={totalPages <= 1}
             >
               &#9654;
             </button>
@@ -294,15 +209,7 @@ export default function App() {
         <PokemonModal
           name={selectedPokemon}
           onClose={() => setSelectedPokemon(null)}
-          favorites={favorites}
-          toggleFavorite={toggleFavorite}
-          onPokemonSelect={handleSwitchPokemon}
-        />
-      )}
-      {showMinigame && (
-        <WhoIsThatPokemon
-          allPokemons={allPokemons}
-          onClose={() => setShowMinigame(false)}
+          onPokemonSelect={handleEvolutionSelect}
         />
       )}
     </div>

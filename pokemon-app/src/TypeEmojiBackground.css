@@ -1,0 +1,67 @@
+.emoji-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+.dark .emoji-background {
+  opacity: 0.12;
+}
+
+.emoji-column {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  font-size: 2rem;
+}
+
+.emoji {
+  padding: 10px 0;
+}
+
+.animate-up {
+  animation: scroll-up 60s linear infinite;
+}
+
+.animate-down {
+  animation: scroll-down 60s linear infinite;
+}
+
+@keyframes scroll-up {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scroll-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}

@@ -1,0 +1,301 @@
+.controls-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 4px dashed #3b4cca;
+}
+
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--controls-bg);
+  padding: 10px 15px;
+  border-radius: 12px;
+  border: 2px solid var(--controls-border);
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+}
+
+.sort-container label {
+  font-size: 0.8rem;
+  color: #3b4cca;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.7);
+}
+
+.sort-container select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  font-family: "Press Start 2P", "Arial", sans-serif;
+  background: transparent;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+input[type="text"] {
+  width: 15%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 2px solid var(--input-border);
+  font-size: 1rem;
+  background: var(--input-bg);
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  font-family: "Press Start 2P", "Arial", sans-serif;
+}
+
+.advanced-filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.filter-input {
+  width: 100px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 2px solid var(--input-border);
+  font-size: 0.8rem;
+  background: var(--input-bg);
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  font-family: "Press Start 2P", "Arial", sans-serif;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--input-border);
+  font-size: 0.8rem;
+  background: var(--input-bg);
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+  font-family: "Press Start 2P", "Arial", sans-serif;
+  cursor: pointer;
+}
+
+.type-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.type-filter {
+  padding: 6px 12px;
+  border: 2px solid var(--type-filter-border);
+  border-radius: 16px;
+  background-color: var(--type-filter-bg);
+  cursor: pointer;
+  font-family: "Press Start 2P", "Arial", sans-serif;
+  font-size: 0.7rem;
+  text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 2px 2px 0px var(--type-filter-border);
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.7),
+    -1px -1px 0px rgba(0, 0, 0, 0.2);
+}
+
+.type-filter:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0px var(--type-filter-border);
+}
+
+.type-filter.active {
+  color: white;
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0px var(--type-filter-border);
+}
+
+.dark .type-filter {
+  border-color: #555;
+  color: white;
+}
+
+.type-filter.type-normal,
+.type-filter.type-normal.active {
+  background-color: #a8a77a;
+}
+.type-filter.type-fire,
+.type-filter.type-fire.active {
+  background-color: #ee8130;
+}
+.type-filter.type-water,
+.type-filter.type-water.active {
+  background-color: #6390f0;
+}
+.type-filter.type-electric,
+.type-filter.type-electric.active {
+  background-color: #f7d02c;
+  color: #2d2d2d;
+}
+.type-filter.type-grass,
+.type-filter.type-grass.active {
+  background-color: #7ac74c;
+}
+.type-filter.type-ice,
+.type-filter.type-ice.active {
+  background-color: #96d9d6;
+  color: #2d2d2d;
+}
+.type-filter.type-fighting,
+.type-filter.type-fighting.active {
+  background-color: #c22e28;
+}
+.type-filter.type-poison,
+.type-filter.type-poison.active {
+  background-color: #a33ea1;
+}
+.type-filter.type-ground,
+.type-filter.type-ground.active {
+  background-color: #e2bf65;
+  color: #2d2d2d;
+}
+.type-filter.type-flying,
+.type-filter.type-flying.active {
+  background-color: #a98ff3;
+}
+.type-filter.type-psychic,
+.type-filter.type-psychic.active {
+  background-color: #f95587;
+}
+.type-filter.type-bug,
+.type-filter.type-bug.active {
+  background-color: #a6b91a;
+}
+.type-filter.type-rock,
+.type-filter.type-rock.active {
+  background-color: #b6a136;
+}
+.type-filter.type-ghost,
+.type-filter.type-ghost.active {
+  background-color: #735797;
+}
+.type-filter.type-dragon,
+.type-filter.type-dragon.active {
+  background-color: #6f35fc;
+}
+.type-filter.type-dark,
+.type-filter.type-dark.active {
+  background-color: #705746;
+}
+.type-filter.type-steel,
+.type-filter.type-steel.active {
+  background-color: #b7b7ce;
+}
+.type-filter.type-fairy,
+.type-filter.type-fairy.active {
+  background-color: #d685ad;
+}
+
+.type-filter:not(.active):hover {
+  color: white;
+}
+.type-filter.type-normal:not(.active):hover {
+  background-color: #a8a77a;
+}
+.type-filter.type-fire:not(.active):hover {
+  background-color: #ee8130;
+}
+.type-filter.type-water:not(.active):hover {
+  background-color: #6390f0;
+}
+.type-filter.type-electric:not(.active):hover {
+  background-color: #f7d02c;
+  color: #2d2d2d;
+}
+.type-filter.type-grass:not(.active):hover {
+  background-color: #7ac74c;
+}
+.type-filter.type-ice:not(.active):hover {
+  background-color: #96d9d6;
+  color: #2d2d2d;
+}
+.type-filter.type-fighting:not(.active):hover {
+  background-color: #c22e28;
+}
+.type-filter.type-poison:not(.active):hover {
+  background-color: #a33ea1;
+}
+.type-filter.type-ground:not(.active):hover {
+  background-color: #e2bf65;
+  color: #2d2d2d;
+}
+.type-filter.type-flying:not(.active):hover {
+  background-color: #a98ff3;
+}
+.type-filter.type-psychic:not(.active):hover {
+  background-color: #f95587;
+}
+.type-filter.type-bug:not(.active):hover {
+  background-color: #a6b91a;
+}
+.type-filter.type-rock:not(.active):hover {
+  background-color: #b6a136;
+}
+.type-filter.type-ghost:not(.active):hover {
+  background-color: #735797;
+}
+.type-filter.type-dragon:not(.active):hover {
+  background-color: #6f35fc;
+}
+.type-filter.type-dark:not(.active):hover {
+  background-color: #705746;
+}
+.type-filter.type-steel:not(.active):hover {
+  background-color: #b7b7ce;
+}
+.type-filter.type-fairy:not(.active):hover {
+  background-color: #d685ad;
+}
+
+.type-filter.active {
+  border-color: #6b9bd1;
+}
+
+.type-filter.type-electric.active,
+.type-filter.type-ice.active,
+.type-filter.type-ground.active {
+  color: #2d2d2d;
+}
+
+.type-filter.type-electric:not(.active):hover,
+.type-filter.type-ice:not(.active):hover,
+.type-filter.type-ground:not(.active):hover {
+  color: #2d2d2d;
+}
+
+@media (max-width: 1024px) {
+  .type-filter {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .controls-container {
+    gap: 15px;
+    padding-bottom: 15px;
+  }
+  input[type="text"] {
+    width: 100%;
+  }
+  .filter-input {
+    width: 80px;
+  }
+  .sort-container {
+    padding: 8px 12px;
+  }
+  .sort-container label {
+    font-size: 0.7rem;
+  }
+  .sort-container select {
+    font-size: 0.7rem;
+  }
+  .type-filter {
+    font-size: 0.7rem;
+    padding: 6px 10px;
+  }
+}

@@ -23,7 +23,7 @@ export default function PokemonList({ onSelect }) {
       })
       .catch(() => {
         setLoading(false);
-        alert("Error al cargar los pokemones");
+        alert("Error loading pokemons");
       });
   }, []);
 
@@ -36,7 +36,7 @@ export default function PokemonList({ onSelect }) {
   return (
     <div>
       {loading ? (
-        <p>Cargando...</p>
+        <p>Loading...</p>
       ) : (
         <ul>
           {paginatedPokemons.map((p) => (
@@ -50,17 +50,17 @@ export default function PokemonList({ onSelect }) {
       )}
       <div className="pagination">
         <button disabled={page === 1} onClick={() => setPage(page - 1)}>
-          Anterior
+          Previous
         </button>
         <span>
           {" "}
-          Página {page} de {totalPages}{" "}
+          Page {page} of {totalPages}{" "}
         </span>
         <button
           disabled={page === totalPages}
           onClick={() => setPage(page + 1)}
         >
-          Siguiente
+          Next
         </button>
       </div>
     </div>
