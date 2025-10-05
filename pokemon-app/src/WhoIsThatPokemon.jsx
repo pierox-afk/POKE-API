@@ -4,7 +4,7 @@ import "./WhoIsThatPokemon.css";
 const WhoIsThatPokemon = ({ allPokemons, onClose }) => {
   const [answer, setAnswer] = useState(null);
   const [options, setOptions] = useState([]);
-  const [gameState, setGameState] = useState("playing"); // 'playing', 'revealed'
+  const [gameState, setGameState] = useState("playing");
   const [isHiding, setIsHiding] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(
@@ -58,10 +58,10 @@ const WhoIsThatPokemon = ({ allPokemons, onClose }) => {
     }
 
     setTimeout(() => {
-      setIsHiding(true); // Start hiding transition
+      setIsHiding(true);
       setTimeout(() => {
-        startNewRound(); // Change pokemon after it's hidden
-      }, 500); // This should match the transition duration
+        startNewRound();
+      }, 500);
     }, 1500);
   };
 

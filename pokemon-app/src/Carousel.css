@@ -89,24 +89,6 @@
   z-index: 10;
 }
 
-.image-skeleton {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-  background-size: 200% 100%;
-  animation: loading 1.5s infinite;
-  border-radius: 4px;
-}
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 .pokemon-carousel img {
   animation: fadeIn 0.3s;
 }
@@ -171,7 +153,6 @@
   }
 }
 
-/* Media queries para tablets */
 @media (max-width: 1024px) {
   .carousel-arrow {
     width: 56px;
@@ -180,7 +161,6 @@
   }
 }
 
-/* Media queries para móviles */
 @media (max-width: 768px) {
   .carousel-arrow {
     width: 48px;

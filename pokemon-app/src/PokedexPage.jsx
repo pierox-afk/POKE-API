@@ -61,19 +61,15 @@ export default function PokedexPage() {
   }, [selectedType, allPokemons]);
 
   useEffect(() => {
-    // Limpia clases de tipo anteriores del body
     const bodyClasses = document.body.classList;
     for (const cls of [...bodyClasses]) {
       if (cls.startsWith("background-type-")) {
         bodyClasses.remove(cls);
       }
     }
-
-    // Añade la nueva clase si se selecciona un tipo
     if (selectedType) {
       document.body.classList.add(`background-type-${selectedType}`);
     }
-    // Si no hay tipo seleccionado, se usará el fondo por defecto del body
   }, [selectedType]);
 
   const sortedPokemons = [...pokemons].sort((a, b) => {
@@ -119,7 +115,7 @@ export default function PokedexPage() {
       } else {
         setAnimationDirection("slide-in-left");
       }
-    }, 250); 
+    }, 250);
   };
 
   return (

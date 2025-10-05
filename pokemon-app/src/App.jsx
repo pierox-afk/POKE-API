@@ -134,7 +134,7 @@ export default function App() {
 
   const filteredPokemons = (selectedType ? pokemons : sortedPokemons).filter(
     (p) =>
-      p.name.toLowerCase().includes(search.toLowerCase()) && // Search filter
+      p.name.toLowerCase().includes(search.toLowerCase()) &&
       (!showFavorites || favorites.has(p.id))
   );
 

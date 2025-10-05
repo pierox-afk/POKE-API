@@ -3,24 +3,24 @@ import "./TypeEmojiBackground.css";
 
 const TypeEmojiBackground = () => {
   const emojis = [
-    "🔥", // Fire
-    "💧", // Water
-    "🌿", // Grass
-    "⚡️", // Electric
-    "❄️", // Ice
-    "🥊", // Fighting
-    "☠️", // Poison
-    "🏜️", // Ground
-    "🦅", // Flying
-    "🔮", // Psychic
-    "🐞", // Bug
-    "🪨", // Rock
-    "👻", // Ghost
-    "🐉", // Dragon
-    "🌑", // Dark
-    "⚙️", // Steel
-    "✨", // Fairy
-    "⚪️", // Normal
+    "🔥",
+    "💧",
+    "🌿",
+    "⚡️",
+    "❄️",
+    "🥊",
+    "☠️",
+    "🏜️",
+    "🦅",
+    "🔮",
+    "🐞",
+    "🪨",
+    "👻",
+    "🐉",
+    "🌑",
+    "⚙️",
+    "✨",
+    "⚪️",
   ];
 
   const longEmojiList = Array(4).fill(emojis).flat();
