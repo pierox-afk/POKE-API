@@ -53,6 +53,17 @@
   overflow-y: auto;
 }
 
+/* Oculta el scrollbar en navegadores WebKit (Chrome, Safari, Edge) */
+.modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+/* Oculta el scrollbar en Firefox y mantiene la funcionalidad */
+.modal-content {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .pokemon-details {
   display: flex;
   flex-direction: column;
